@@ -1,10 +1,12 @@
 package com.example.todo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -54,7 +56,6 @@ public class AddTodoActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onClick(View v) {
                 Todo todo = new Todo(tvTodo.getText().toString(),spinner.getSelectedItem().toString());
-                //getselecteditem.tostring spiner
                 Intent resultIntent = new Intent();
                 resultIntent.putExtra("todo", todo);
                 setResult(RESULT_OK, resultIntent);

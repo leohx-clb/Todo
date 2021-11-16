@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -15,6 +16,9 @@ import android.widget.TextView;
 import com.example.todo.pojos.Todo;
 
 public class MainActivity extends AppCompatActivity {
+
+    private  final String TAG ="ToDoList";
+    private static final String KEY_TODOLIST ="todoList";
 
     //declaration
     private Context context;
@@ -27,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     //menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //        return super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
@@ -51,9 +54,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-            tvTodoList = findViewById(R.id.tvTodoList);
-
+        tvTodoList = findViewById(R.id.tvTodoList);
         context = getApplicationContext();
+        if (savedInstanceState != null){
+            todoList = savedInstanceState.getString(KEY_TODOLIST);
+            tvTodoList.setText(todoList);
+        }
     }
 
     // Call Back method  to get the Message form other Activity
@@ -70,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
                     tvTodoList.setText(todoList);
             }
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(TAG,"onSaveInstanceState() called");
+        // Key is string
+        outState.putString(KEY_TODOLIST, todoList);
     }
 
 }
