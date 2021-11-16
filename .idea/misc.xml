@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HB/AndroidStudioProjects/Todo/app/src/main/res/layout/activity_add_todo.xml" value="0.1" />
         <entry key="..\:/Users/HB/AndroidStudioProjects/Todo/app/src/main/res/layout/activity_main.xml" value="0.1793478260869565" />
+        <entry key="..\:/Users/HB/AndroidStudioProjects/Todo/app/src/main/res/menu/menu_main.xml" value="0.13125" />
       </map>
     </option>
   </component>
