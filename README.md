@@ -1,3 +1,4 @@
 # Todo
 Android app (todo list)
-2 version sont fait dans ce repo retourner au commit 'fin de la V1'
+chercher dans les commit pour les old version
+'fin de la V1','fin de la V2'
