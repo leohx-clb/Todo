@@ -15,11 +15,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.todo.dao.TodoDAO;
 import com.example.todo.pojos.Todo;
 
 public class AddTodoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     //declaration
+    public  static final String KEY_TODO = "todo";
+
+    private TodoDAO todoDAO;
     private Context context;
     private Button btnAdd;
     private Button btnCancel;
@@ -35,6 +39,8 @@ public class AddTodoActivity extends AppCompatActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_todo);
         context = getApplicationContext();
+
+        todoDAO = new TodoDAO(context);
 
         //spinner
         Spinner spin = (Spinner) findViewById(R.id.spinner);
@@ -56,11 +62,12 @@ public class AddTodoActivity extends AppCompatActivity implements AdapterView.On
             @Override
             public void onClick(View v) {
                 Todo todo = new Todo(tvTodo.getText().toString(),spinner.getSelectedItem().toString());
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("todo", todo);
-                setResult(RESULT_OK, resultIntent);
-                //affiche les valeur de la todo
-                Toast.makeText(context,todo.getName()+todo.getUrgency(),Toast.LENGTH_LONG).show();
+
+                //ajout en base
+                todoDAO.add(todo);
+
+//                affiche les valeur de la todo
+//                Toast.makeText(context,todo.getName()+todo.getUrgency(),Toast.LENGTH_LONG).show();
                 finish();
             }
         });
@@ -68,10 +75,10 @@ public class AddTodoActivity extends AppCompatActivity implements AdapterView.On
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent resultIntent = new Intent();
-                setResult(RESULT_CANCELED, resultIntent);
+
                 finish();
-                Toast.makeText(context,"check cancel",Toast.LENGTH_LONG).show();
+//                affiche les valeur de la todo
+//                Toast.makeText(context,"check cancel",Toast.LENGTH_LONG).show();
             }
         });
     }
